@@ -8,40 +8,40 @@ function ResultCard({ predictedAge, confidence }) {
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="bg-white rounded-lg shadow-xl p-6"
+      className="bg-white/10 backdrop-blur-lg rounded-xl shadow-2xl p-8"
     >
-      <h2 className="text-2xl font-bold text-gray-900 mb-4">Prediction Result</h2>
-      <div className="flex items-center justify-around">
+      <h2 className="text-3xl font-bold text-white mb-8 text-center">Your Results</h2>
+      <div className="flex items-center justify-around gap-8">
         <div className="text-center">
-          <div className="w-32 h-32 mx-auto mb-4">
+          <div className="w-40 h-40 mx-auto mb-6">
             <CircularProgressbar
               value={predictedAge}
               maxValue={100}
               text={`${predictedAge}`}
               styles={buildStyles({
-                textSize: '24px',
-                pathColor: `rgba(129, 140, 248, ${confidence})`,
-                textColor: '#1F2937',
-                trailColor: '#d6d6d6',
+                textSize: '28px',
+                pathColor: `rgba(168, 85, 247, ${confidence})`,
+                textColor: '#fff',
+                trailColor: 'rgba(255, 255, 255, 0.1)',
               })}
             />
           </div>
-          <p className="text-lg font-semibold text-gray-900">Predicted Age</p>
+          <p className="text-xl font-semibold text-gray-200">Predicted Age</p>
         </div>
         <div className="text-center">
-          <div className="w-32 h-32 mx-auto mb-4">
+          <div className="w-40 h-40 mx-auto mb-6">
             <CircularProgressbar
               value={confidence * 100}
               text={`${Math.round(confidence * 100)}%`}
               styles={buildStyles({
-                textSize: '24px',
-                pathColor: '#8B5CF6',
-                textColor: '#1F2937',
-                trailColor: '#d6d6d6',
+                textSize: '28px',
+                pathColor: '#EC4899',
+                textColor: '#fff',
+                trailColor: 'rgba(255, 255, 255, 0.1)',
               })}
             />
           </div>
-          <p className="text-lg font-semibold text-gray-900">Confidence</p>
+          <p className="text-xl font-semibold text-gray-200">Confidence</p>
         </div>
       </div>
     </motion.div>
