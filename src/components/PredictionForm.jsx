@@ -31,7 +31,7 @@ function PredictionForm({ onSubmit, loading }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white/10 backdrop-blur-lg rounded-xl shadow-2xl p-8">
+    <form onSubmit={handleSubmit} className="bg-white/5 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white/10">
       <div className="grid grid-cols-1 gap-6">
         {formFields.map((field, index) => (
           <motion.div
@@ -39,7 +39,9 @@ function PredictionForm({ onSubmit, loading }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            className={`relative ${focusedField === field.name ? 'scale-105' : ''}`}
+            className={`relative transform transition-all duration-200 ease-in-out ${
+              focusedField === field.name ? 'scale-105' : ''
+            }`}
           >
             <label className="block text-lg font-medium text-gray-200 mb-2">
               {field.icon} {field.label}
@@ -54,14 +56,14 @@ function PredictionForm({ onSubmit, loading }) {
               onChange={handleChange}
               onFocus={() => setFocusedField(field.name)}
               onBlur={() => setFocusedField(null)}
-              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
             />
           </motion.div>
         ))}
         <motion.button
           type="submit"
           disabled={loading}
-          className={`mt-6 w-full flex justify-center py-3 px-4 border border-transparent rounded-lg text-lg font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200 ${
+          className={`mt-8 w-full flex justify-center py-4 px-6 border border-transparent rounded-xl text-xl font-semibold text-white bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200 ${
             loading ? 'opacity-75 cursor-not-allowed' : ''
           }`}
           whileHover={{ scale: 1.02 }}
@@ -69,10 +71,7 @@ function PredictionForm({ onSubmit, loading }) {
         >
           {loading ? (
             <div className="flex items-center">
-              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
+              <div className="animate-spin mr-3 h-6 w-6 border-3 border-white border-t-transparent rounded-full"></div>
               Analyzing...
             </div>
           ) : (
